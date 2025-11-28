@@ -27,14 +27,14 @@ public class IcecreamMachineControllerImpl implements IcecreamMachineController 
                 case "milkshake" -> factory.createMilkshake();
                 case "smoothie" -> factory.createSmoothie();
                 default -> {
-                    logger.warn("⚠️ Неизвестный тип десерта: {}", order);
+                    logger.warn("Неизвестный тип десерта: {}", order);
                     yield null;
                 }
             };
 
             if (dessert != null) {
                 String command = dessert.getCommand();
-                logger.info("➡️ Отправляем в машину: {}", command);
+                logger.info("➡Отправляем в машину: {}", command);
                 machine.send(command);
             }
         }
