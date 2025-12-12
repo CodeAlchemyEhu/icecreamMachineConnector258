@@ -1,9 +1,9 @@
 package lt.esdc.designpatterns.factory;
 
-import lt.esdc.designpatterns.model.*;
+import lt.esdc.designpatterns.model.Dessert;
 
 public interface DessertFactory {
-    IceCream createIceCream();
-    Milkshake createMilkshake();
-    Smoothie createSmoothie();
+    Dessert createIceCream();
+    Dessert createMilkshake();
+    Dessert createSmoothie();
 }

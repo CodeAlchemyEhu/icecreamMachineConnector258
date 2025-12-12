@@ -23,7 +23,7 @@ public class IcecreamMachineConnector implements IcecreamMachineV16 {
             );
         }
 
-        logger.info("🍨 Preparing dessert: " + order);
+        logger.info("Preparing dessert: " + order);
         logger.info("Mixing ingredients...");
         try {
             Thread.sleep(1000L);

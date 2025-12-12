@@ -1,20 +1,39 @@
 package lt.esdc.designpatterns.factory;
 
-import lt.esdc.designpatterns.model.*;
+import lt.esdc.designpatterns.model.Dessert;
 
 public class IndiaDessertFactory implements DessertFactory {
+
     @Override
-    public IceCream createIceCream() {
-        return new IceCream(200, 25, 0, 20);
+    public Dessert createIceCream() {
+        return new Dessert.Builder()
+                .type("icecream")
+                .frozenMass(200)
+                .milk(25)
+                .juice(0)
+                .water(20)
+                .build();
     }
 
     @Override
-    public Milkshake createMilkshake() {
-        return new Milkshake(120, 210, 0, 20);
+    public Dessert createMilkshake() {
+        return new Dessert.Builder()
+                .type("milkshake")
+                .frozenMass(120)
+                .milk(210)
+                .juice(0)
+                .water(20)
+                .build();
     }
 
     @Override
-    public Smoothie createSmoothie() {
-        return new Smoothie(30, 40, 220, 55);
+    public Dessert createSmoothie() {
+        return new Dessert.Builder()
+                .type("smoothie")
+                .frozenMass(30)
+                .milk(40)
+                .juice(220)
+                .water(55)
+                .build();
     }
 }
