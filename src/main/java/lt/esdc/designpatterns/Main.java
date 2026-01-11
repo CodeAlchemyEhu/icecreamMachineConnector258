@@ -1,17 +1,22 @@
 package lt.esdc.designpatterns;
 
 import lt.esdc.designpatterns.controller.IcecreamMachineController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lt.esdc.designpatterns.controller.impl.IcecreamMachineControllerImpl;
+import lt.esdc.designpatterns.factory.BrazilDessertFactory;
+import lt.esdc.designpatterns.factory.DessertFactory;
+import lt.esdc.designpatterns.machine.IcecreamMachineConnector;
+import lt.esdc.designpatterns.machine.IcecreamMachineV16;
 
 public class Main {
-    private static final Logger  logger = LoggerFactory.getLogger(Main.class);
-
     public static void main(String[] args) {
-        IcecreamMachineController controller = null;
 
-        String[] order = {"icecream", "milkshake", "smoothie"};
-        controller.processOrder(order);
+        IcecreamMachineV16 machine = new IcecreamMachineConnector();
 
+        DessertFactory factory = new BrazilDessertFactory();
+
+        IcecreamMachineController controller = IcecreamMachineControllerImpl.getInstance(factory, machine);
+
+        String[] orders = {"icecream", "milkshake", "smoothie"};
+        controller.processOrder(orders);
     }
 }

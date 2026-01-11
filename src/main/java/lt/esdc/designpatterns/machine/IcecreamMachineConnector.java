@@ -5,14 +5,12 @@ import org.slf4j.LoggerFactory;
 
 public class IcecreamMachineConnector implements IcecreamMachineV16 {
 
-    // Regex for pattern: "<number>g <number>ml <number>ml <number>ml"
     private static final String PATTERN = "^\\d+g \\d+ml \\d+ml \\d+ml$";
 
     private static final Logger logger = LoggerFactory.getLogger(IcecreamMachineConnector.class);
 
     @Override
     public void send(String order) {
-
         if (order == null || order.isBlank()) {
             throw new IllegalArgumentException("Order string cannot be null or empty.");
         }
@@ -25,7 +23,7 @@ public class IcecreamMachineConnector implements IcecreamMachineV16 {
             );
         }
 
-        logger.info("🍨 Preparing dessert: " + order);
+        logger.info("Preparing dessert: " + order);
         logger.info("Mixing ingredients...");
         try {
             Thread.sleep(1000L);
