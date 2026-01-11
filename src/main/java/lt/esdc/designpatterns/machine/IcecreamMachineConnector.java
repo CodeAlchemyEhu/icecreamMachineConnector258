@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class IcecreamMachineConnector implements IcecreamMachineV16 {
 
-    private static final String PATTERN = "^\\d+g \\d+ml \\d+ml \\d+ml$";
+    private static final String PATTERN = "(?i)^\\d+g \\d+ml \\d+ml \\d+ml(?: [a-z]+)*$";
 
     private static final Logger logger = LoggerFactory.getLogger(IcecreamMachineConnector.class);
 

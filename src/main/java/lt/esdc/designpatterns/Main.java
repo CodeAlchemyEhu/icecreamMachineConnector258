@@ -16,7 +16,7 @@ public class Main {
 
         IcecreamMachineController controller = IcecreamMachineControllerImpl.getInstance(factory, machine);
 
-        String[] orders = {"icecream", "milkshake", "smoothie"};
+        String[] orders = {"icecream marshmallow chocolate", "milkshake syrup", "smoothie"};
         controller.processOrder(orders);
     }
 }
