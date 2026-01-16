@@ -3,36 +3,20 @@ package lt.esdc.designpatterns;
 import lt.esdc.designpatterns.controller.IcecreamMachineController;
 import lt.esdc.designpatterns.controller.impl.IcecreamMachineControllerImpl;
 import lt.esdc.designpatterns.factory.BrazilDessertFactory;
-import lt.esdc.designpatterns.factory.IndiaDessertFactory;
+import lt.esdc.designpatterns.factory.DessertFactory;
 import lt.esdc.designpatterns.machine.IcecreamMachineConnector;
-import lt.esdc.designpatterns.machine.NewIcecreamMachineConnector;
-import lt.esdc.designpatterns.machine.adapter.NewMachineAdapter;
-import lt.esdc.designpatterns.machine.adapter.OldMachineAdapter;
+import lt.esdc.designpatterns.machine.IcecreamMachineV16;
 
 public class Main {
-
     public static void main(String[] args) {
 
-        String[] order = {
-                "icecream chocolate syrup",
-                "milkshake",
-                "smoothie marshmallow"
-        };
+        IcecreamMachineV16 machine = new IcecreamMachineConnector();
 
-        IcecreamMachineController oldMachineController =
-                new IcecreamMachineControllerImpl(
-                        new BrazilDessertFactory(),
-                        new OldMachineAdapter(new IcecreamMachineConnector())
-                );
+        DessertFactory factory = new BrazilDessertFactory();
 
-        oldMachineController.processOrder(order);
+        IcecreamMachineController controller = IcecreamMachineControllerImpl.getInstance(factory, machine);
 
-        IcecreamMachineController newMachineController =
-                new IcecreamMachineControllerImpl(
-                        new IndiaDessertFactory(),
-                        new NewMachineAdapter(new NewIcecreamMachineConnector())
-                );
-
-        newMachineController.processOrder(order);
+        String[] orders = {"icecream", "milkshake", "smoothie"};
+        controller.processOrder(orders);
     }
 }
