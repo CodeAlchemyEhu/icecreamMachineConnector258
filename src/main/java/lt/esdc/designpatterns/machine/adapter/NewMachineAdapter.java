@@ -10,7 +10,6 @@ public class NewMachineAdapter implements IcecreamMachineAdapter {
     public NewMachineAdapter(NewIcecreamMachineConnector machine) {
         this.machine = machine;
     }
-
     @Override
     public void send(String command) {
         String token = machine.getToken();
