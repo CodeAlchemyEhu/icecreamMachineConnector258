@@ -96,3 +96,122 @@ Only one session can be open at any time
 This behavior mimics real-world external device integrations where authentication, session control, and state validation are required.
 
 
+---
+
+## 📝 New task for behavioral design patterns p.1
+
+
+### 🧠 Task – Order Price Calculation
+Extend the dessert ordering system to **calculate the final order price** dynamically, depending on:
+
+- dessert type
+- region
+- applied discount rules
+
+Use **stratagy** pattern
+
+
+#### ✔ Description
+
+Each dessert order must be able to calculate its **base price** and then apply **one discount strategy**.
+
+
+#### ✔ Regional Dessert Price Table
+
+#### ☕ Base Dessert Prices (USD)
+
+| Region         | Ice Cream | Milkshake | Smoothie |
+|----------------|----------|-----------|-------|
+| **USA** 🇺🇸   | $2.00    | $3.50     | $4.00 |
+| **Japan** 🇯🇵 | $1.80    | $3.20     | $3.80 |
+
+
+#### 🍯 Topping Prices (USD)
+
+| Topping  | Price |
+|---------|-------|
+| Chocolate | $0.70 |
+| Marshmallow   | $0.40 |
+| Syrup  | $0.80 |
+
+- Toppings can be combined
+- Each topping adds its price to the base dessert price
+
+#### ✔ Discount Strategies
+
+Only **one discount** may be applied per order.
+
+| Discount Type       | Rule |
+|---------------------|------|
+| **None**            | No discount |
+| **Student** 🎓      | 20% off total price |
+| **Loyalty Card** 💳 | 10% off total price |
+
+
+
+#### ✔ Example Usage
+
+```
+student icecream marshmallow syrup
+
+none milkshake
+```
+
+### 🧠 Task – Order Processing Pipeline
+
+#### 🎯 Goal
+Refactor the order processing logic into a **step-by-step processing pipeline** where each step is responsible for **exactly one concern**.
+
+Use **Chain of Responsibility** pattern
+
+#### ✔ Description
+
+Processing a dessert order involves multiple sequential actions, such as (examples):
+
+- parsing the input string
+- identifying dessert type
+- applying toppings
+- applying discount rules
+
+### 🧠 Task – Icecream Machine Connector States
+
+### 🎯 Goal
+Enhance the `IcecreamMachineConnector` to behave differently depending on its **internal state**, simulating a real-world unstable external device.
+
+The connector must automatically switch between states based on **successes and failures** during operation.
+
+Use **state** pattern
+
+
+#### ✔ Description
+
+The Icecream Machine Connector must operate in **three distinct states**:
+
+1. **OPEN**
+2. **CLOSED**
+3. **SEMI-CLOSED**
+
+Each state defines how the connector reacts to incoming dessert preparation requests.
+
+#### ✔ State Definitions & Rules
+
+##### 🟢 OPEN State
+- Normal operating mode
+- All requests are executed normally
+- If **2 exceptions occur processing**:
+   - the connector switches to **CLOSED** state
+
+##### 🔴 CLOSED State
+- Protective mode
+- The connector **ignores the next 5 incoming calls**
+- Ignored calls:
+   - must not reach the real Icecream Machine
+- After 5 ignored calls:
+   - the connector switches to **SEMI-CLOSED** state
+
+##### 🟡 SEMI-CLOSED State
+- Testing mode
+- The connector allows **exactly one request** to pass through
+- If the request:
+   - **succeeds** → switch to **OPEN**
+   - **fails** → switch back to **CLOSED**

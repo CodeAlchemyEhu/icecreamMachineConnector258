@@ -27,7 +27,7 @@ public class IcecreamMachineConnector implements IcecreamMachineV16 {
         logger.info("Mixing ingredients...");
         try {
             Thread.sleep(1000L);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException("Machine interrupted while preparing dessert.", e);
         }
