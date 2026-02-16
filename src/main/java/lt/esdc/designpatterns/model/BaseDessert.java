@@ -1,6 +1,6 @@
 package lt.esdc.designpatterns.model;
 
-public class BaseDessert implements Dessert {
+public class BaseDessert implements DessertInterface {
 
     private final int frozen;
     private final int milk;

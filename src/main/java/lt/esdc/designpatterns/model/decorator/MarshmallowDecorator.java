@@ -1,15 +1,16 @@
 package lt.esdc.designpatterns.model.decorator;
 
-import lt.esdc.designpatterns.model.Dessert;
+
+import lt.esdc.designpatterns.model.DessertInterface;
 
 public class MarshmallowDecorator extends DessertDecorator {
 
-    public MarshmallowDecorator(Dessert dessert) {
+    public MarshmallowDecorator(DessertInterface dessert) {
         super(dessert);
     }
 
     @Override
     public String getCommand() {
-        return dessert.getCommand() + " marshmallow";
+        return super.getCommand() + " marshmallow";
     }
 }
