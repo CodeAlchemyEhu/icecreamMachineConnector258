@@ -1,6 +1,7 @@
 package lt.esdc.designpatterns.model;
 
-public class Dessert {
+public class Dessert implements DessertInterface {
+
     private final int frozenMass;
     private final int milk;
     private final int juice;
@@ -15,10 +16,12 @@ public class Dessert {
         this.type = builder.type;
     }
 
+    @Override
     public String getCommand() {
         return String.format("%dg %dml %dml %dml", frozenMass, milk, juice, water);
     }
 
+    @Override
     public String getType() {
         return type;
     }
@@ -30,33 +33,12 @@ public class Dessert {
         private int water;
         private String type = "unknown";
 
-        public Builder type(String type) {
-            this.type = type;
-            return this;
-        }
+        public Builder type(String type) { this.type = type; return this; }
+        public Builder frozenMass(int frozenMass) { this.frozenMass = frozenMass; return this; }
+        public Builder milk(int milk) { this.milk = milk; return this; }
+        public Builder juice(int juice) { this.juice = juice; return this; }
+        public Builder water(int water) { this.water = water; return this; }
 
-        public Builder frozenMass(int frozenMass) {
-            this.frozenMass = frozenMass;
-            return this;
-        }
-
-        public Builder milk(int milk) {
-            this.milk = milk;
-            return this;
-        }
-
-        public Builder juice(int juice) {
-            this.juice = juice;
-            return this;
-        }
-
-        public Builder water(int water) {
-            this.water = water;
-            return this;
-        }
-
-        public Dessert build() {
-            return new Dessert(this);
-        }
+        public Dessert build() { return new Dessert(this); }
     }
 }
