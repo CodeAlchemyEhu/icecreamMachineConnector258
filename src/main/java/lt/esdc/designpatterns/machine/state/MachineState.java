@@ -5,7 +5,6 @@ import lt.esdc.designpatterns.machine.IcecreamMachineV77;
 
 public class MachineState {
 
-    // внутренний enum для состояний машины
     private enum StateType { OPEN, CLOSED, SEMI_CLOSED }
 
     private StateType currentState = StateType.OPEN;
@@ -64,7 +63,6 @@ public class MachineState {
         }
     }
 
-    // Обработка закрытого состояния
     private void handleClosed() {
         if (++ignoredCount >= 5) {
             ignoredCount = 0;
@@ -84,7 +82,6 @@ public class MachineState {
         ignoredCount = 0;
     }
 
-    // безопасный доступ к текущему состоянию как строке
     public String getCurrentState() {
         return currentState.name();
     }
